@@ -7,7 +7,7 @@ export default function Product() {
       <PageNav />
       <section>
         <img
-          src="./imgs/img-1.jpg"
+          src="/imgs/img-1.jpg"
           alt="person with dog overlooking mountain with sunset"
         />
         <div>
