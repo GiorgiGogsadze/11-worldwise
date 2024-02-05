@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useCallback,
+} from "react";
 
 const API_URL = "http://localhost:8000";
 
@@ -78,20 +84,23 @@ function CitiesProvider({ children }) {
     })();
   }, []);
 
-  const getCurrentCity = async (id) => {
-    if (id == currentCity.id) return;
-    try {
-      disCity({ type: "startLoading" });
-      const res = await fetch(`${API_URL}/cities/${id}`);
-      const data = await res.json();
-      disCity({ type: "city/loaded", payLoad: data });
-    } catch (err) {
-      disCity({
-        type: "rejected",
-        payLoad: "There was an error loading city data",
-      });
-    }
-  };
+  const getCurrentCity = useCallback(
+    async (id) => {
+      if (id == currentCity.id) return;
+      try {
+        disCity({ type: "startLoading" });
+        const res = await fetch(`${API_URL}/cities/${id}`);
+        const data = await res.json();
+        disCity({ type: "city/loaded", payLoad: data });
+      } catch (err) {
+        disCity({
+          type: "rejected",
+          payLoad: "There was an error loading city data",
+        });
+      }
+    },
+    [currentCity.id]
+  );
 
   const uploadCity = async (cityObj) => {
     try {

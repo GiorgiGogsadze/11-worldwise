@@ -71,6 +71,18 @@
         "lat": 42.27069695416541,
         "lng": 42.70503915576946
       }
+    },
+    {
+      "id": "ee9f",
+      "cityName": "Gemeente West Maas en Waal",
+      "country": "Netherlands (Kingdom of the)",
+      "emoji": "🇳🇱",
+      "date": "2024-02-05T07:21:16.901Z",
+      "notes": "",
+      "position": {
+        "lat": 51.86292393948345,
+        "lng": 5.554998287639528
+      }
     }
   ]
 }
