@@ -7,6 +7,7 @@ import { useCities } from "../contexts/CitiesContext";
 
 export default function CityList() {
   const { cities, isLoading } = useCities();
+
   if (isLoading) return <Spinner />;
   if (cities.length === 0)
     return (

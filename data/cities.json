@@ -1,18 +1,6 @@
 {
   "cities": [
     {
-      "cityName": "Lisbon",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2027-10-31T15:59:59.138Z",
-      "notes": "My favorite city so far!",
-      "position": {
-        "lat": 38.727881642324164,
-        "lng": -9.140900099907554
-      },
-      "id": "73930385"
-    },
-    {
       "cityName": "Madrid",
       "country": "Spain",
       "emoji": "🇪🇸",
@@ -61,27 +49,15 @@
       }
     },
     {
-      "id": "b168",
-      "cityName": "kutsisi",
+      "id": "c215",
+      "cityName": "Tbilisi",
       "country": "Georgia",
       "emoji": "🇬🇪",
-      "date": "2024-02-04T11:57:42.148Z",
-      "notes": "I live here",
-      "position": {
-        "lat": 42.27069695416541,
-        "lng": 42.70503915576946
-      }
-    },
-    {
-      "id": "ee9f",
-      "cityName": "Gemeente West Maas en Waal",
-      "country": "Netherlands (Kingdom of the)",
-      "emoji": "🇳🇱",
-      "date": "2024-02-05T07:21:16.901Z",
+      "date": "2024-02-06T04:11:17.865Z",
       "notes": "",
       "position": {
-        "lat": 51.86292393948345,
-        "lng": 5.554998287639528
+        "lat": 41.69752591075902,
+        "lng": 44.8187255859375
       }
     }
   ]

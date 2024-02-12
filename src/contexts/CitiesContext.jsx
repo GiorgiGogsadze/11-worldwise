@@ -5,8 +5,13 @@ import {
   useReducer,
   useCallback,
 } from "react";
+import { ADDRESS_WITHOUT_PORT } from "../privateData";
+import io from "socket.io-client";
+const refetchSocket = io.connect(`${ADDRESS_WITHOUT_PORT}:4000`);
+const cityChangeSocket = io.connect(`${ADDRESS_WITHOUT_PORT}:4000`);
 
-const API_URL = "http://localhost:8000";
+// const API_URL = "http://localhost:8000";
+const API_URL = `${ADDRESS_WITHOUT_PORT}:8000`;
 
 const CitiesContext = createContext();
 
@@ -69,7 +74,7 @@ function CitiesProvider({ children }) {
   );
 
   useEffect(() => {
-    (async () => {
+    const fetchData = async () => {
       try {
         disCity({ type: "startLoading" });
         const res = await fetch(`${API_URL}/cities`);
@@ -81,7 +86,12 @@ function CitiesProvider({ children }) {
           payLoad: "There was an error loading data...",
         });
       }
-    })();
+    };
+    refetchSocket.on("get_city", (data) => {
+      console.log("hello", data);
+      fetchData();
+    });
+    fetchData();
   }, []);
 
   const getCurrentCity = useCallback(
@@ -111,7 +121,10 @@ function CitiesProvider({ children }) {
         body: JSON.stringify(cityObj),
       });
       const data = await res.json();
-      disCity({ type: "city/uploaded", payLoad: data });
+      // disCity({ type: "city/uploaded", payLoad: data });
+      cityChangeSocket.emit("city_change", {
+        message: "city added",
+      });
     } catch (err) {
       disCity({ type: "rejected", payLoad: "couldn't upload city" });
     }
@@ -123,7 +136,9 @@ function CitiesProvider({ children }) {
       await fetch(`${API_URL}/cities/${id}`, {
         method: "DELETE",
       });
-      disCity({ type: "city/removed", payLoad: id });
+      cityChangeSocket.emit("city_change", {
+        message: "city removed",
+      });
     } catch (err) {
       disCity({ type: "rejected", payLoad: "couldn't delete city" });
     }
